@@ -18,10 +18,16 @@ else:
     email = email_file.read()
     email_file.close()
 
+shortcuts = {
+    'wc:': '.fandom.com/api.php',  # interwiki, from old name "Wikicities"
+    "ns'": '.neoseeker.com/w/api.php',  # unofficial
+    'mh:': '.miraheze.org/w/api.php',  # interwiki on Miraheze
+}  # todo: show shortcuts and actually use them
+
 while True:
     wikis = []
 
-    print('\nWiki entry: Enter full URL to api.php, or wc:subdomain for Fandom')
+    print('\nWiki entry: Enter full URL to api.php, or shortcut')
     while True:
         wiki = input('Enter wiki'
                      f'{' or leave blank to end' if wikis else ''}: ')
