@@ -54,6 +54,10 @@ while True:
         data['files'].append(s['images'])
         data['edits'].append(s['edits'])
 
+    table += '\n| --- |'
+    for __ in wikis:
+        table += ' | --- |'
+
     for i in data:
         stat = data[i]
         best_stat = stat.index(max(stat))
