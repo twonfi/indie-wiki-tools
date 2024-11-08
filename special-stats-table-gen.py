@@ -56,7 +56,7 @@ while True:
 
     table += '\n| --- |'
     for __ in wikis:
-        table += ' | --- |'
+        table += ' --- |'
 
     for i in data:
         stat = data[i]
