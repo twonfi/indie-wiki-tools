@@ -3,6 +3,7 @@
 import requests
 from json import loads
 from re import match, sub
+from packaging.version import Version
 try:
     import pyperclip
 except ModuleNotFoundError:
@@ -36,13 +37,14 @@ while True:
 
     table = '| Stat |'
 
-    data = {'articles': [], 'pages': [], 'files': [], 'edits': []}
+    data = {'articles': [], 'pages': [], 'files': [], 'edits': [], 'ver': []}
 
     for wiki in wikis:
         table += f' {sub(r'https?://|/.*', '', wiki)} |'
 
         r = requests.get(f'{wiki}?format=json&action=query&meta=siteinfo'
-                               '&formatversion=2&siprop=statistics', headers={
+                               '&formatversion=2&siprop=general|statistics',
+            headers={
             'User-Agent': 'Indie-Wiki-Tools'
                           ' +https://github.com/twonfi/indie-wiki-tools',
             'From': email
@@ -53,6 +55,9 @@ while True:
         data['pages'].append(s['pages'])
         data['files'].append(s['images'])
         data['edits'].append(s['edits'])
+        data['ver'].append(Version(sub('^MediaWiki |-wmf.*^', '', loads(r.text)
+        ['query']['general']['generator'].removeprefix('MediaWiki '))))
+
 
     table += '\n| --- |'
     for __ in wikis:
@@ -77,6 +82,10 @@ while True:
 
     table += '\n| Edits |'
     for i in data['edits']:
+        table += f' {str(i)} |'
+
+    table += '\n| MediaWiki version |'
+    for i in data['ver']:
         table += f' {str(i)} |'
 
     print('\n' + table)
