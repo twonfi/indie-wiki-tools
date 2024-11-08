@@ -88,7 +88,7 @@ while True:
     for i in data['ver']:
         table += f' {str(i)} |'
 
-    print('\n')
+    print(f'\n{table}\n')
 
     if auto_copy and input('Copy to clipboard? (y/N): ').lower() == 'y':
         pyperclip.copy(table)
