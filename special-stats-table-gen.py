@@ -22,7 +22,9 @@ else:
 while True:
     wikis = []
 
-    print('\nWiki entry: Enter full URL to api.php, or wc:subdomain for Fandom')
+    print('\nWiki entry: Enter full URL to script path, api.php'
+          ' or wc:subdomain for Fandom')
+    print('Example: https://www.example.org/w')
     while True:
         wiki = input('Enter wiki'
                      f'{' or leave blank to end' if wikis else ''}: ')
@@ -31,7 +33,7 @@ while True:
                 wikis.append(f'https://{wiki.removeprefix('wc:')}'
                              '.fandom.com/api.php')
             else:
-                wikis.append(wiki)
+                wikis.append(wiki + '/api.php')
         else:
             break
 
