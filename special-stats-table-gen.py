@@ -88,8 +88,7 @@ while True:
     for i in data['ver']:
         table += f' {str(i)} |'
 
-    print('\n' + table)
-    print('\n(Columns are in the order of entry)\n')
+    print('\n')
 
     if auto_copy and input('Copy to clipboard? (y/N): ').lower() == 'y':
         pyperclip.copy(table)
