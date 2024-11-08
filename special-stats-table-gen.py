@@ -55,8 +55,8 @@ while True:
         data['pages'].append(s['pages'])
         data['files'].append(s['images'])
         data['edits'].append(s['edits'])
-        data['ver'].append(Version(sub('^MediaWiki |-wmf.*^', '', loads(r.text)
-        ['query']['general']['generator'].removeprefix('MediaWiki '))))
+        data['ver'].append(Version(sub('^MediaWiki |-wmf.*$', '', loads(r.text)
+        ['query']['general']['generator'])))
 
 
     table += '\n| --- |'
